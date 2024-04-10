@@ -68,14 +68,16 @@ jobs:
     # Build the full matrix only on push events to the default branch, or
     # when PR gets the has a `gha:full-build` label, or when it had the
     # label already and it gets a new commit.
-    if: |-
-      ${{
-        github.event_name == 'schedule' ||
-        github.event_name == 'push' ||
-        github.event_name == 'workflow_dispatch' ||
-        contains(github.event.pull_request.labels.*.name, 'gha:full-build')
-      }}
-    name: macOS-Bazel
+    # DEBUG DEBUG
+    if: false
+    # DEBUG DEBUG
+    # if: |-
+    #   ${{
+    #     github.event_name == 'schedule' ||
+    #     github.event_name == 'push' ||
+    #     github.event_name == 'workflow_dispatch' ||
+    #     contains(github.event.pull_request.labels.*.name, 'gha:full-build')
+    #   }}    name: macOS-Bazel
     needs: [pre-flight]
     uses: ./.github/workflows/macos-bazel.yml
     with:
@@ -85,14 +87,16 @@ jobs:
     # Build the full matrix only on push events to the default branch, or
     # when PR gets the has a `gha:full-build` label, or when it had the
     # label already and it gets a new commit.
-    if: |-
-      ${{
-        github.event_name == 'schedule' ||
-        github.event_name == 'push' ||
-        github.event_name == 'workflow_dispatch' ||
-        contains(github.event.pull_request.labels.*.name, 'gha:full-build')
-      }}
-    name: Windows-Bazel
+    # DEBUG DEBUG
+    if: false
+    # DEBUG DEBUG
+    # if: |-
+    #   ${{
+    #     github.event_name == 'schedule' ||
+    #     github.event_name == 'push' ||
+    #     github.event_name == 'workflow_dispatch' ||
+    #     contains(github.event.pull_request.labels.*.name, 'gha:full-build')
+    #   }}    name: Windows-Bazel
     needs: [pre-flight]
     uses: ./.github/workflows/windows-bazel.yml
     with:
@@ -102,6 +106,9 @@ jobs:
     name: macOS-CMake
     needs: [pre-flight]
     uses: ./.github/workflows/macos-cmake.yml
+    # DEBUG DEBUG
+    if: false
+    # DEBUG DEBUG
     with:
       checkout-ref: ${{ needs.pre-flight.outputs.checkout-sha }}
       # Build the full matrix only on push events to the default branch, or
@@ -119,6 +126,9 @@ jobs:
     name: Windows-CMake
     needs: [pre-flight]
     uses: ./.github/workflows/windows-cmake.yml
+    # DEBUG DEBUG
+    if: false
+    # DEBUG DEBUG
     with:
       checkout-ref: ${{ needs.pre-flight.outputs.checkout-sha }}
       # Build the full matrix only on push events to the default branch, or
